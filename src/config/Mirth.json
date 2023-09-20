@@ -1,0 +1,11 @@
+{
+    "container_name": "mirth-connect-webservice",
+    "container_port": "3002",
+    "host_mirth": true,
+    "mirth_username": "admin",
+    "mirth_password": "admin",
+    "mirth_endpoint": null,
+    "interoperator_endpoint": null,
+    "mirth_db": "postgres",
+    "mirth_port": "8443"
+}

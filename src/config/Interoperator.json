@@ -1,0 +1,15 @@
+{
+    "container_name": "interoperator-webservice",
+    "container_port": "3000",
+    "host_database": true,
+    "database_host_ip": null,
+    "database_username": "admin",
+    "database_password": "admin",
+    "database_name": "abi-metadata",
+    "database_port": 3306,
+    "mirth_ip": "mirth-connect",
+    "message_broker_endpoint": "http://message-broker-webservice:3000",
+    "mirth_handler_endpoint": "http://mirth-connect-webservice:3000",
+    "admin_username": "admin",
+    "admin_password": "admin"
+}

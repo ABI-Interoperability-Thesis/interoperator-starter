@@ -1,0 +1,5 @@
+{
+    "host_portainer": false,
+    "container_name": "portainer",
+    "container_port": 9000
+}

@@ -1,0 +1,10 @@
+{
+    "container_name": "message_broker_webservice",
+    "container_port": "3001",
+    "message_broker_port": "5672",
+    "message_broker_port_ui": "15672",
+    "host_message_broker": true,
+    "message_broker_username": "admin",
+    "message_broker_password": "admin",
+    "message_broker_host_ip": null
+}

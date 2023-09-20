@@ -1,0 +1,5 @@
+{
+    "container_name": "abi-webapp",
+    "container_port": "3003",
+    "host_machine": "127.0.0.1"
+}
