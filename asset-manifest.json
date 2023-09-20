@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/interoperator-starter/static/css/main.754ebb54.css",
+    "main.js": "/interoperator-starter/static/js/main.f26c25cf.js",
+    "index.html": "/interoperator-starter/index.html",
+    "main.754ebb54.css.map": "/interoperator-starter/static/css/main.754ebb54.css.map",
+    "main.f26c25cf.js.map": "/interoperator-starter/static/js/main.f26c25cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.754ebb54.css",
+    "static/js/main.f26c25cf.js"
+  ]
+}
