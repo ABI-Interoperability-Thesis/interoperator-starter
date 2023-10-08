@@ -5,9 +5,10 @@ import { Typography, Divider, Button, message, Menu } from 'antd'
 import {
   AppstoreOutlined,
   SettingOutlined,
-  ContainerOutlined,
-  ToolOutlined,
-  UserOutlined,
+  DatabaseOutlined,
+  ClusterOutlined,
+  FileSearchOutlined,
+  FireOutlined 
 } from '@ant-design/icons';
 
 // Import Components
@@ -29,7 +30,7 @@ import UserInterfaceJSONConfig from './config/UserInterface.json'
 import { GenerateInteroperatorContainer, GenerateMySQLContainer, GenerateDockerComposeFile, GenerateMessageBrokerContainer, GenerateMirthWebserviceContainer, GenerateRabbitMQContainer, GenerateMirthConnectContainer, GenerateMirthConnectDBContainer, GeneratePortainerContainer, GenerateUserInterfaceContainer } from './utils/utils'
 
 const { Title, Paragraph } = Typography
-
+const { SubMenu } = Menu;
 const App = () => {
   // General State
   const [dockerCompose, setDockerCompose] = useState()
@@ -109,7 +110,10 @@ const App = () => {
   }
 
   const handleMenuItemClick = (e) => {
+    const blacklist = ['erd','erd-non-rel']
+    if (!(blacklist.includes(e.key))) {
     setSelectedMenuItem(e.key);
+    }
   };
 
   const menuContentMap = {
@@ -158,19 +162,23 @@ const App = () => {
         selectedKeys={[selectedMenuItem]}
         onClick={handleMenuItemClick}
       >
-        <Menu.Item key="system-starter" icon={<AppstoreOutlined />}>
+        <Menu.Item key="system-starter" icon={<FireOutlined />}>
           System Starter
         </Menu.Item>
-        <Menu.Item key="erd" icon={<SettingOutlined />}>
-          <a href='/interoperator-starter/ERD/index.html'>System Database</a>
-        </Menu.Item>
+
+        <SubMenu key="erd-sub-menu" icon={<DatabaseOutlined />} title="System Database">
+          <Menu.Item key="erd" icon={<ClusterOutlined />}>
+            <a href='/interoperator-starter/ERD/index.html' target="_blank">Relational Data Model</a>
+          </Menu.Item>
+          <Menu.Item key="erd-non-rel" icon={<FileSearchOutlined />}>
+            <a href='/interoperator-starter/ERD_Non_Rel/index.html' target="_blank">Non-Relational Data Model</a>
+          </Menu.Item>
+        </SubMenu>
       </Menu>
 
       <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column', marginBottom: '1rem' }}>
         {menuContentMap[selectedMenuItem]}
       </div>
-
-
 
     </div>
   )
