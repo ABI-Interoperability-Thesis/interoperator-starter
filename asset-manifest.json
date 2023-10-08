@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/interoperator-starter/static/css/main.754ebb54.css",
-    "main.js": "/interoperator-starter/static/js/main.c0cc3a5c.js",
+    "main.js": "/interoperator-starter/static/js/main.c9399c94.js",
     "index.html": "/interoperator-starter/index.html",
     "main.754ebb54.css.map": "/interoperator-starter/static/css/main.754ebb54.css.map",
-    "main.c0cc3a5c.js.map": "/interoperator-starter/static/js/main.c0cc3a5c.js.map"
+    "main.c9399c94.js.map": "/interoperator-starter/static/js/main.c9399c94.js.map"
   },
   "entrypoints": [
     "static/css/main.754ebb54.css",
-    "static/js/main.c0cc3a5c.js"
+    "static/js/main.c9399c94.js"
   ]
 }
