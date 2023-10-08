@@ -1,7 +1,14 @@
 // General Imports
 import React, { useState, useEffect } from 'react'
 import Icons from './Icons'
-import { Typography, Divider, Button, message } from 'antd'
+import { Typography, Divider, Button, message, Menu } from 'antd'
+import {
+  AppstoreOutlined,
+  SettingOutlined,
+  ContainerOutlined,
+  ToolOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 // Import Components
 import SystemDescription from './Components/SystemDescription'
@@ -26,6 +33,7 @@ const { Title, Paragraph } = Typography
 const App = () => {
   // General State
   const [dockerCompose, setDockerCompose] = useState()
+  const [selectedMenuItem, setSelectedMenuItem] = useState('system-starter');
 
   // Configuration State
   const [interoperatorState, setInteroperatorState] = useState(InteroperatorJSONConfig)
@@ -72,7 +80,7 @@ const App = () => {
       docker_compose_json['services']['mirth-db'] = GenerateMirthConnectDBContainer(mirthState)
       docker_volumes['postgres_data'] = null
     }
-    
+
     if (portainerState['host_portainer'] === true) {
       docker_compose_json['services']['portainer'] = GeneratePortainerContainer(portainerState)
       docker_volumes['portainer_data'] = null
@@ -100,6 +108,43 @@ const App = () => {
     setDockerCompose(docker_compose_str)
   }
 
+  const handleMenuItemClick = (e) => {
+    setSelectedMenuItem(e.key);
+  };
+
+  const menuContentMap = {
+    "system-starter": (
+      <div>
+        <Divider>System Description</Divider>
+        <SystemDescription />
+        <Divider>System Configuration</Divider>
+
+        <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column', marginBottom: '1rem' }}>
+          <InteroperatorConfig interoperatorState={interoperatorState} setInteroperatorState={setInteroperatorState} />
+          <MessageBrokerConfig messageBrokerState={messageBrokerState} setMessageBrokerState={setMessageBrokerState} />
+          <MirthHandlerConfig mirthState={mirthState} setMirthState={setMirthState} />
+          <UserInterfaceConfig userInterfaceState={userInterfaceState} setUserInterfaceState={setUserInterfaceState} />
+          <PortainerConfig portainerState={portainerState} setPortainerState={setPortainerState} />
+        </div>
+
+        <Button style={{ width: '100%', height: '3rem', backgroundColor: "#4CAF50F" }} type='primary' onClick={GenerateDockerCompose}>Generate Docker Compose</Button>
+
+        {
+          dockerCompose &&
+          <>
+            <Divider>Generated Docker Compose</Divider>
+            <Paragraph>
+              <pre>
+                {dockerCompose}
+              </pre>
+            </Paragraph>
+          </>
+        }
+      </div>
+    )
+  }
+
+
   return (
     <div style={{ padding: '2rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -107,31 +152,26 @@ const App = () => {
         <Title style={{ margin: 0 }} level={2}>Interoperator Starter</Title>
       </div>
 
-      <Divider>System Description</Divider>
-      <SystemDescription />
-      <Divider>System Configuration</Divider>
+      <Menu
+        mode="horizontal"
+        theme="light"
+        selectedKeys={[selectedMenuItem]}
+        onClick={handleMenuItemClick}
+      >
+        <Menu.Item key="system-starter" icon={<AppstoreOutlined />}>
+          System Starter
+        </Menu.Item>
+        <Menu.Item key="erd" icon={<SettingOutlined />}>
+          <a href='interoperator-starter/ERD/index.html'>System Database</a>
+        </Menu.Item>
+      </Menu>
 
       <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column', marginBottom: '1rem' }}>
-        <InteroperatorConfig interoperatorState={interoperatorState} setInteroperatorState={setInteroperatorState} />
-        <MessageBrokerConfig messageBrokerState={messageBrokerState} setMessageBrokerState={setMessageBrokerState} />
-        <MirthHandlerConfig mirthState={mirthState} setMirthState={setMirthState} />
-        <UserInterfaceConfig userInterfaceState={userInterfaceState} setUserInterfaceState={setUserInterfaceState} />
-        <PortainerConfig portainerState={portainerState} setPortainerState={setPortainerState} />
+        {menuContentMap[selectedMenuItem]}
       </div>
 
-      <Button style={{ width: '100%', height: '3rem', backgroundColor: "#4CAF50F" }} type='primary' onClick={GenerateDockerCompose}>Generate Docker Compose</Button>
 
-      {
-        dockerCompose &&
-        <>
-          <Divider>Generated Docker Compose</Divider>
-          <Paragraph>
-            <pre>
-              {dockerCompose}
-            </pre>
-          </Paragraph>
-        </>
-      }
+
     </div>
   )
 }

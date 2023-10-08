@@ -34,7 +34,7 @@ const SystemDescription = () => {
         The ABI Interoperator is a system that can take your machine learning models and can run them using HL7 messages or FHIR resources as input for the models. It does this while allowing complete control over the model feature mappings to HL7/FHIR, validations and preprocessing. The system uses a Microservice Architecture where each service is a specialized controller of a different part of the system and is highly customizeable through its environemt variables allowing modularity and different parts of the system to be hosted by different machines. Thus the three main containers/services in the system can use already running instances of mysql/rabbitmq/mirth-connect or fire up internal ones directly in the docker-compose file.
       </Paragraph>
       <div className="container">
-        <Title level={3}>Interoperator Container</Title>
+        <Title level={3}>Interoperator Microservice</Title>
         <Paragraph>
           The Interoperator Container is the central component of our system, responsible for managing the interoperability engine's backend operations. It establishes a robust connection to the database, ensuring data integrity and reliability. This container plays a critical role in facilitating seamless communication between various system modules and ensures the efficient exchange of data.
         </Paragraph>
@@ -52,7 +52,7 @@ const SystemDescription = () => {
         </Collapse>
       </div>
       <div className="container">
-        <Title level={3}>Message Broker Container</Title>
+        <Title level={3}>Message Broker Microservice</Title>
         <Paragraph>
           The Message Broker Container serves as the communication hub within our system. It controls the message broker, allowing diverse applications and systems to send and receive requests seamlessly. This container is responsible for routing messages efficiently, ensuring real-time data exchange, and promoting system-wide interoperability.
         </Paragraph>
@@ -70,7 +70,7 @@ const SystemDescription = () => {
         </Collapse>
       </div>
       <div className="container">
-        <Title level={3}>Mirth Container</Title>
+        <Title level={3}>Mirth Microservice</Title>
         <Paragraph>
           The Mirth Container is dedicated to managing Mirth Connect instances in our system. It leverages the Mirth Connect API to create, modify, and deploy channels, among other functions. This container significantly enhances our system's capabilities in healthcare data integration and management, providing a robust and scalable solution.
         </Paragraph>
