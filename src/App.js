@@ -162,7 +162,7 @@ const App = () => {
           System Starter
         </Menu.Item>
         <Menu.Item key="erd" icon={<SettingOutlined />}>
-          <a href='interoperator-starter/ERD/index.html'>System Database</a>
+          <a href='/interoperator-starter/ERD/index.html'>System Database</a>
         </Menu.Item>
       </Menu>
 
